@@ -15,13 +15,28 @@ export default function Home() {
     const heroX = side === "right" ? -300 : 300;
     const bottomX = side === "right" ? -140 : 140;
 
-    const fadeContainer =
+    const fadingContainer =
       side === "right" ? leftCtaRef.current : rightCtaRef.current;
-
-    const fadeButton = fadeContainer?.querySelector("button");
-
-    const fadeDiamond =
+    const fadingButton = fadingContainer?.querySelector("button");
+    const fadingDiamond =
       side === "right" ? leftDiamondRef.current : rightDiamondRef.current;
+
+    const keepContainer =
+      side === "right" ? rightCtaRef.current : leftCtaRef.current;
+    const keepButton = keepContainer?.querySelector("button");
+    const keepDiamond =
+      side === "right" ? rightDiamondRef.current : leftDiamondRef.current;
+
+    gsap.killTweensOf([
+      heroRef.current,
+      bottomLineRef.current,
+      leftCtaRef.current,
+      rightCtaRef.current,
+      leftDiamondRef.current,
+      rightDiamondRef.current,
+      leftCtaRef.current?.querySelector("button"),
+      rightCtaRef.current?.querySelector("button"),
+    ]);
 
     gsap.to(heroRef.current, {
       x: heroX,
@@ -35,14 +50,31 @@ export default function Home() {
       ease: "power3.inOut",
     });
 
-    gsap.to([fadeContainer, fadeButton, fadeDiamond], {
+    gsap.to([keepContainer, keepButton, keepDiamond], {
+      opacity: 1,
+      duration: 0.2,
+      ease: "power1.inOut",
+    });
+
+    gsap.to([fadingContainer, fadingButton, fadingDiamond], {
       opacity: 0,
-      duration: 0.5,
-      ease: "power2.out",
+      duration: 0.2,
+      ease: "power1.inOut",
     });
   }
 
   function handleLeave() {
+    gsap.killTweensOf([
+      heroRef.current,
+      bottomLineRef.current,
+      leftCtaRef.current,
+      rightCtaRef.current,
+      leftDiamondRef.current,
+      rightDiamondRef.current,
+      leftCtaRef.current?.querySelector("button"),
+      rightCtaRef.current?.querySelector("button"),
+    ]);
+
     gsap.to(heroRef.current, {
       x: 0,
       duration: 1,
@@ -66,8 +98,9 @@ export default function Home() {
       ],
       {
         opacity: 1,
-        duration: 0.5,
-        ease: "power2.out",
+        duration: 0.2,
+        delay: 0.3,
+        ease: "power1.inOut",
       }
     );
   }
