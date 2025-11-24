@@ -26,13 +26,13 @@ export default function Home() {
     gsap.to(heroRef.current, {
       x: heroX,
       duration: 1,
-      ease: "power3.out",
+      ease: "power3.inOut",
     });
 
     gsap.to(bottomLineRef.current, {
       x: bottomX,
       duration: 1,
-      ease: "power3.out",
+      ease: "power3.inOut",
     });
 
     gsap.to([fadeContainer, fadeButton, fadeDiamond], {
@@ -46,13 +46,13 @@ export default function Home() {
     gsap.to(heroRef.current, {
       x: 0,
       duration: 1,
-      ease: "power3.out",
+      ease: "power3.inOut",
     });
 
     gsap.to(bottomLineRef.current, {
       x: 0,
       duration: 1,
-      ease: "power3.out",
+      ease: "power3.inOut",
     });
 
     gsap.to(
