@@ -1,31 +1,115 @@
 "use client";
 
+import { useRef } from "react";
+import { gsap } from "gsap";
+
 export default function Home() {
+  const heroRef = useRef<HTMLDivElement | null>(null);
+  const bottomLineRef = useRef<HTMLHeadingElement | null>(null);
+  const leftCtaRef = useRef<HTMLDivElement | null>(null);
+  const rightCtaRef = useRef<HTMLDivElement | null>(null);
+  const leftDiamondRef = useRef<HTMLDivElement | null>(null);
+  const rightDiamondRef = useRef<HTMLDivElement | null>(null);
+
+  function handleHover(side: "left" | "right") {
+    const heroX = side === "right" ? -300 : 300;
+    const bottomX = side === "right" ? -140 : 140;
+
+    const fadeContainer =
+      side === "right" ? leftCtaRef.current : rightCtaRef.current;
+
+    const fadeButton = fadeContainer?.querySelector("button");
+
+    const fadeDiamond =
+      side === "right" ? leftDiamondRef.current : rightDiamondRef.current;
+
+    gsap.to(heroRef.current, {
+      x: heroX,
+      duration: 1,
+      ease: "power3.out",
+    });
+
+    gsap.to(bottomLineRef.current, {
+      x: bottomX,
+      duration: 1,
+      ease: "power3.out",
+    });
+
+    gsap.to([fadeContainer, fadeButton, fadeDiamond], {
+      opacity: 0,
+      duration: 0.5,
+      ease: "power2.out",
+    });
+  }
+
+  function handleLeave() {
+    gsap.to(heroRef.current, {
+      x: 0,
+      duration: 1,
+      ease: "power3.out",
+    });
+
+    gsap.to(bottomLineRef.current, {
+      x: 0,
+      duration: 1,
+      ease: "power3.out",
+    });
+
+    gsap.to(
+      [
+        leftCtaRef.current,
+        rightCtaRef.current,
+        leftCtaRef.current?.querySelector("button"),
+        rightCtaRef.current?.querySelector("button"),
+        leftDiamondRef.current,
+        rightDiamondRef.current,
+      ],
+      {
+        opacity: 1,
+        duration: 0.5,
+        ease: "power2.out",
+      }
+    );
+  }
+
   return (
     <div className="relative flex-1 flex items-center justify-center bg-white overflow-hidden">
-      <h1
-        className="text-[128px] leading-[120px] tracking-[0.001em] text-center text-[#1A1B1C]"
+      <div
+        ref={heroRef}
+        className="text-center text-[#1A1B1C]"
         style={{ fontFamily: "Roobert TRIAL, sans-serif", fontWeight: 100 }}
       >
-        Sophisticated
-        <br />
-        skincare
-      </h1>
+        <h1 className="text-[128px] leading-[120px] tracking-[0.001em]">
+          Sophisticated
+        </h1>
+        <h1
+          ref={bottomLineRef}
+          className="text-[128px] leading-[120px] tracking-[0.001em]"
+        >
+          skincare
+        </h1>
+      </div>
 
       <div
+        ref={leftDiamondRef}
         className="absolute border-2 border-dashed border-[#D4D4D4] w-[602px] h-[602px] rotate-45"
         style={{ top: 179, left: -301 }}
       />
 
       <div
+        ref={rightDiamondRef}
         className="absolute border-2 border-dashed border-[#D4D4D4] w-[602px] h-[602px] rotate-45"
         style={{ top: 179, right: -301 }}
       />
 
-      <div className="absolute left-24 top-1/2 -translate-y-1/2 flex items-center gap-3">
+      <div
+        ref={leftCtaRef}
+        className="absolute left-24 top-1/2 -translate-y-1/2 flex items-center gap-3"
+      >
         <button
           type="button"
-          onClick={() => console.log("Clicked DISCOVER A.I.")}
+          onMouseEnter={() => handleHover("left")}
+          onMouseLeave={handleLeave}
           className="flex h-9 w-9 items-center justify-center border border-[#1A1B1C] rotate-45 transition-transform duration-200 hover:scale-110 cursor-pointer"
         >
           <span className="-rotate-45 text-[10px] text-[#1A1B1C]">◄</span>
@@ -36,18 +120,28 @@ export default function Home() {
         </span>
       </div>
 
-      <div className="absolute right-24 top-1/2 -translate-y-1/2 flex items-center gap-3">
+      <div
+        ref={rightCtaRef}
+        className="absolute right-24 top-1/2 -translate-y-1/2 flex items-center gap-3"
+      >
         <span className="text-[12px] tracking-[0.16em] uppercase text-[#1A1B1C]">
           Take test
         </span>
 
         <button
           type="button"
-          onClick={() => console.log("Clicked TAKE TEST")}
+          onMouseEnter={() => handleHover("right")}
+          onMouseLeave={handleLeave}
           className="flex h-9 w-9 items-center justify-center border border-[#1A1B1C] rotate-45 transition-transform duration-200 hover:scale-110 cursor-pointer"
         >
           <span className="-rotate-45 text-[10px] text-[#1A1B1C]">►</span>
         </button>
+      </div>
+
+      <div className="absolute left-24 bottom-10 max-w-xs text-[10px] leading-[16px] tracking-[0.12em] uppercase text-[#1A1B1C]">
+        <p>SKINSTRIC DEVELOPED AN A.I. THAT CREATES</p>
+        <p>A HIGHLY-PERSONALISED ROUTINE TAILORED TO</p>
+        <p>WHAT YOUR SKIN NEEDS.</p>
       </div>
     </div>
   );
