@@ -273,7 +273,6 @@ export default function SummaryPage() {
     <div className="min-h-screen md:h-[90vh] flex flex-col bg-white text-black">
       <main className="flex-1 w-full bg-white">
         <div className="h-full max-w-[480px] md:max-w-full mx-auto md:mx-5 px-4 md:px-0 flex flex-col">
-          {/* Titles */}
           <div className="text-start mb-4 md:mb-10">
             <h2 className="text-base font-semibold mb-1 leading-[24px]">
               A.I. ANALYSIS
@@ -286,10 +285,8 @@ export default function SummaryPage() {
             </h4>
           </div>
 
-          {/* MAIN CONTENT */}
           <div className="grid md:grid-cols-[1.5fr_8.5fr_3.15fr] gap-4 mt-6 md:mt-10 pb-10 md:pb-0 flex-1">
-            {/* Left summary column */}
-            <div className="hidden md:flex bg-white space-y-3 flex-col h-[62%]">
+            <div className="hidden md:flex order-3 md:order-1 bg-white space-y-3 flex-col h-[62%]">
               <button
                 type="button"
                 onClick={() => setActiveGroup("race")}
@@ -332,8 +329,7 @@ export default function SummaryPage() {
               </button>
             </div>
 
-            {/* Gauge block */}
-            <div className="relative bg-white md:bg-gray-100 p-0 md:p-4 flex flex-col items-center justify-center md:h-[57vh] md:border-t">
+            <div className="hidden md:flex md:order-2 relative bg-white md:bg-gray-100 p-0 md:p-4 flex-col items-center justify-center md:h-[57vh] md:border-t">
               <p className="hidden md:block md:absolute text-[40px] mb-2 left-7 top-4">
                 {mainLabel}
               </p>
@@ -393,16 +389,14 @@ export default function SummaryPage() {
               </p>
             </div>
 
-            {/* Results column */}
-            <div className="bg-[#F4F5F7] pt-4 pb-4 md:border-t">
-              {/* MOBILE SELECTOR */}
-              <div className="md:hidden mb-4 space-y-3">
+            <div className="order-1 md:order-3 bg-[#F4F5F7] pt-0 md:pt-4 pb-0 md:pb-4 md:border-t">
+              <div className="md:hidden mb-0 space-y-0">
                 <button
                   type="button"
                   onClick={() => setActiveGroup("race")}
-                  className={`w-full p-3 cursor-pointer flex flex-col justify-between border-t ${
+                  className={`w-full px-4 py-3 cursor-pointer flex flex-col justify-between border-t ${
                     activeGroup === "race"
-                      ? "bg-[#1A1B1C] text-white hover:bg-black"
+                      ? "bg-[#1A1B1C] text-white hover:bg:black"
                       : "bg-[#F3F3F4] hover:bg-[#E1E1E2] text-black"
                   }`}
                 >
@@ -413,7 +407,7 @@ export default function SummaryPage() {
                 <button
                   type="button"
                   onClick={() => setActiveGroup("age")}
-                  className={`w-full p-3 cursor-pointer flex flex-col justify-between border-t ${
+                  className={`w-full px-4 py-3 cursor-pointer flex flex-col justify-between border-t ${
                     activeGroup === "age"
                       ? "bg-[#1A1B1C] text-white hover:bg-black"
                       : "bg-[#F3F3F4] hover:bg-[#E1E1E2] text-black"
@@ -426,7 +420,7 @@ export default function SummaryPage() {
                 <button
                   type="button"
                   onClick={() => setActiveGroup("gender")}
-                  className={`w-full p-3 cursor-pointer flex flex-col justify-between border-t ${
+                  className={`w-full px-4 py-3 cursor-pointer flex flex-col justify-between border-t ${
                     activeGroup === "gender"
                       ? "bg-[#1A1B1C] text-white hover:bg-black"
                       : "bg-[#F3F3F4] hover:bg-[#E1E1E2] text-black"
@@ -439,7 +433,61 @@ export default function SummaryPage() {
                 </button>
               </div>
 
-              {/* TABLE */}
+              <div className="md:hidden bg-white flex flex-col items-center justify-center py-8 mb-6">
+                <div className="relative w-full max-w-[384px] aspect-square mb-4">
+                  <div className="w-full h-full max-h-[384px] relative">
+                    <svg
+                      className="CircularProgressbar text-[#1A1B1C]"
+                      viewBox="0 0 100 100"
+                    >
+                      <path
+                        className="CircularProgressbar-trail"
+                        d="
+                          M 50,50
+                          m 0,-49.15
+                          a 49.15,49.15 0 1 1 0,98.3
+                          a 49.15,49.15 0 1 1 0,-98.3
+                        "
+                        strokeWidth={1.7}
+                        fillOpacity={0}
+                        style={{
+                          strokeLinecap: "butt",
+                          strokeDasharray: `${circumference}px, ${circumference}px`,
+                          strokeDashoffset: 0,
+                        }}
+                      />
+                      <path
+                        className="CircularProgressbar-path"
+                        d="
+                          M 50,50
+                          m 0,-49.15
+                          a 49.15,49.15 0 1 1 0,98.3
+                          a 49.15,49.15 0 1 1 0,-98.3
+                        "
+                        strokeWidth={1.7}
+                        fillOpacity={0}
+                        style={{
+                          stroke: "#1A1B1C",
+                          strokeLinecap: "butt",
+                          strokeDasharray: `${circumference}px, ${circumference}px`,
+                          strokeDashoffset: dashOffset,
+                          transitionDuration: "0.8s",
+                        }}
+                      />
+                    </svg>
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <p className="text-3xl font-normal relative text-black">
+                        {selectedPercent}
+                        <span className="absolute text-xl">%</span>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <p className="mt-2 text-[11px] font-normal leading-[24px] text-center text-black">
+                  If A.I. estimate is wrong, select the correct one.
+                </p>
+              </div>
+
               <div className="space-y-0">
                 <div className="flex justify-between px-4">
                   <h4 className="text-base leading-[24px] tracking-tight font-medium mb-2">
@@ -497,7 +545,6 @@ export default function SummaryPage() {
             </div>
           </div>
 
-          {/* Bottom BACK / HOME */}
           <div className="pt-8 md:pt-[37px] pb-10 bg-white mt-auto">
             <div className="flex justify-between max-w-full mx-auto">
               <button
