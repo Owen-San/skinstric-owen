@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef } from "react";
+import { useRouter } from "next/navigation";
 import { gsap } from "gsap";
 
 export default function Home() {
@@ -10,6 +11,7 @@ export default function Home() {
   const rightCtaRef = useRef<HTMLDivElement | null>(null);
   const leftDiamondRef = useRef<HTMLDivElement | null>(null);
   const rightDiamondRef = useRef<HTMLDivElement | null>(null);
+  const router = useRouter();
 
   function handleHover(side: "left" | "right") {
     const heroX = side === "right" ? -300 : 300;
@@ -165,6 +167,7 @@ export default function Home() {
           type="button"
           onMouseEnter={() => handleHover("right")}
           onMouseLeave={handleLeave}
+          onClick={() => router.push("/testing")}
           className="flex h-9 w-9 items-center justify-center border border-[#1A1B1C] rotate-45 transition-transform duration-200 hover:scale-110 cursor-pointer"
         >
           <span className="-rotate-45 text-[10px] text-[#1A1B1C]">►</span>
