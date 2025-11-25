@@ -517,9 +517,7 @@ export default function SummaryPage() {
                 )}
 
                 {error && !loading && (
-                  <div className="px-4 py-3 text-sm text-red-500">
-                    {error}
-                  </div>
+                  <div className="px-4 py-3 text-sm text-red-500">{error}</div>
                 )}
 
                 {!loading &&
@@ -572,7 +570,7 @@ export default function SummaryPage() {
                   <span className="absolute left-[15px] bottom-[13px] scale-[0.9] rotate-180 hidden sm:block group-hover:scale-[0.92] ease duration-300">
                     ▶
                   </span>
-                  <span className="text-sm font-semibold hidden sm.block ml-6">
+                  <span className="text-sm font-semibold hidden sm:block ml-6">
                     BACK
                   </span>
                 </div>
@@ -587,9 +585,7 @@ export default function SummaryPage() {
                 className="group flex flex-row relative justify-center items-center cursor-pointer"
               >
                 <div className="flex sm:hidden w-12 h-12 items-center justify.center border border-[#1A1B1C] rotate-45 transition-transform duration-200 group-hover:scale-105">
-                  <span className="-rotate-45 text-xs font-semibold">
-                    HOME
-                  </span>
+                  <span className="-rotate-45 text-xs font-semibold">HOME</span>
                 </div>
 
                 <div className="hidden sm:flex flex-row relative justify-center items.center">
