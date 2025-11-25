@@ -347,63 +347,66 @@ export default function SummaryPage() {
               </button>
             </div>
 
-            <div className="hidden md:flex md:order-2 relative bg-white md:bg-gray-100 p-0 md:p-4 flex-col items-center justify-center md:h-[57vh] md:border-t">
+            <div className="hidden md:flex md:order-2 relative bg_WHITE md:bg-gray-100 p-0 md:p-4 flex-col md:h-[57vh] md:border-t">
               <p className="hidden md:block md:absolute text-[40px] mb-2 left-7 top-4">
                 {mainLabel}
               </p>
 
-              <div className="relative w-full max-w-[384px] aspect-square mb-4 md:right-5 md:bottom-2 md:absolute">
-                <div className="w-full h-full max-h-[384px] relative">
-                  <svg
-                    className="CircularProgressbar text-[#1A1B1C]"
-                    viewBox="0 0 100 100"
-                  >
-                    <path
-                      className="CircularProgressbar-trail"
-                      d="
-                        M 50,50
-                        m 0,-49.15
-                        a 49.15,49.15 0 1 1 0,98.3
-                        a 49.15,49.15 0 1 1 0,-98.3
-                      "
-                      strokeWidth={1.7}
-                      fill="none"
-                      style={{
-                        strokeLinecap: "butt",
-                        strokeDasharray: `${circumference}px, ${circumference}px`,
-                        strokeDashoffset: 0,
-                      }}
-                    />
-                    <path
-                      className="CircularProgressbar-path"
-                      d="
-                        M 50,50
-                        m 0,-49.15
-                        a 49.15,49.15 0 1 1 0,98.3
-                        a 49.15,49.15 0 1 1 0,-98.3
-                      "
-                      strokeWidth={1.7}
-                      fill="none"
-                      style={{
-                        stroke: "#1A1B1C",
-                        strokeLinecap: "butt",
-                        strokeDasharray: `${circumference}px, ${circumference}px`,
-                        strokeDashoffset: dashOffset,
-                        transitionDuration: "0.8s",
-                      }}
-                    />
-                  </svg>
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <p className="text-3xl md:text-[40px] font-normal relative text-black">
-                      {selectedPercent}
-                      <span className="absolute text-xl md:text-3xl">%</span>
-                    </p>
+              <div className="flex w-full h-full items-center justify-center">
+                <div className="relative w-[310px] md:w-[360px] lg:w-[400px] xl:w-[440px] 2xl:w-[460px] aspect-square">
+                  <div className="w-full h-full relative">
+                    <svg
+                      className="CircularProgressbar text-[#1A1B1C]"
+                      viewBox="0 0 100 100"
+                    >
+                      <path
+                        className="CircularProgressbar-trail"
+                        d="
+                          M 50,50
+                          m 0,-49.15
+                          a 49.15,49.15 0 1 1 0,98.3
+                          a 49.15,49.15 0 1 1 0,-98.3
+                        "
+                        strokeWidth={1.7}
+                        fill="none"
+                        style={{
+                          strokeLinecap: "butt",
+                          strokeDasharray: `${circumference}px, ${circumference}px`,
+                          strokeDashoffset: 0,
+                        }}
+                      />
+                      <path
+                        className="CircularProgressbar-path"
+                        d="
+                          M 50,50
+                          m 0,-49.15
+                          a 49.15,49.15 0 1 1 0,98.3
+                          a 49.15,49.15 0 1 1 0,-98.3
+                        "
+                        strokeWidth={1.7}
+                        fill="none"
+                        style={{
+                          stroke: "#1A1B1C",
+                          strokeLinecap: "butt",
+                          strokeDasharray: `${circumference}px, ${circumference}px`,
+                          strokeDashoffset: dashOffset,
+                          transitionDuration: "0.8s",
+                        }}
+                      />
+                    </svg>
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <p className="text-3xl md:text-[40px] font-normal relative text-black">
+                        {selectedPercent}
+                        <span className="absolute text-xl md:text-3xl">%</span>
+                      </p>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
 
-            <div className="order-1 md:order-3 bg-[#F4F5F7] pt-0 md:pt-4 pb-0 md:pb-4 md:border-t md:h-[57vh]">
+            {/* RIGHT TABLE + MOBILE STUFF */}
+            <div className="order-1 md:order-3 bg-[#F4F5F7] pt-0 md:pt-4 pb-0 md:pb-4 md:border-t md:h_[57vh]">
               <div className="md:hidden mb-0 space-y-0">
                 <button
                   type="button"
@@ -531,13 +534,13 @@ export default function SummaryPage() {
                         className={`flex items-center justify-between h-[48px] px-4 cursor-pointer w-full ${
                           isActive
                             ? "bg-[#1A1B1C] text-white hover:bg-black"
-                            : "hover:bg-[#E1E1E2] bg-transparent text-black"
+                            : "hover:bg-[#E1E1E2] bg-transparent text.black"
                         }`}
                       >
                         <div className="flex items-center gap-1">
                           <div
                             className={`w-[12px] h-[12px] mr-2 border border-current rotate-45 ${
-                              isActive ? "bg-white" : "bg-transparent"
+                              isActive ? "bg.white" : "bg-transparent"
                             }`}
                           />
                           <span className="font-normal text-base leading-6 tracking-tight">
@@ -569,7 +572,7 @@ export default function SummaryPage() {
                   <span className="absolute left-[15px] bottom-[13px] scale-[0.9] rotate-180 hidden sm:block group-hover:scale-[0.92] ease duration-300">
                     ▶
                   </span>
-                  <span className="text-sm font-semibold hidden sm:block ml-6">
+                  <span className="text-sm font-semibold hidden sm.block ml-6">
                     BACK
                   </span>
                 </div>
@@ -583,17 +586,17 @@ export default function SummaryPage() {
                 onClick={() => router.push("/")}
                 className="group flex flex-row relative justify-center items-center cursor-pointer"
               >
-                <div className="flex sm:hidden w-12 h-12 items-center justify-center border border-[#1A1B1C] rotate-45 transition-transform duration-200 group-hover:scale-105">
+                <div className="flex sm:hidden w-12 h-12 items-center justify.center border border-[#1A1B1C] rotate-45 transition-transform duration-200 group-hover:scale-105">
                   <span className="-rotate-45 text-xs font-semibold">
                     HOME
                   </span>
                 </div>
 
-                <div className="hidden sm:flex flex-row relative justify-center items-center">
+                <div className="hidden sm:flex flex-row relative justify-center items.center">
                   <span className="text-sm font-semibold hidden sm:block mr-5">
                     HOME
                   </span>
-                  <div className="w-12 h-12 hidden sm:flex justify-center border border-[#1A1B1C] rotate-45 scale-[0.85] group-hover:scale-[0.92] ease duration-300" />
+                  <div className="w-12 h-12 hidden sm:flex justify.center border border-[#1A1B1C] rotate-45 scale-[0.85] group-hover:scale-[0.92] ease duration-300" />
                   <span className="absolute right-[15px] bottom-[13px] scale-[0.9] hidden sm:block group-hover:scale-[0.92] ease duration-300">
                     ▶
                   </span>
