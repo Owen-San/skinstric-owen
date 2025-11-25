@@ -114,39 +114,46 @@ export default function TestingPage() {
 
   return (
     <div
-      className="relative w-full bg-white text-[#1A1B1C] overflow-hidden flex items-center justify-center"
+      className="relative w-full bg-white text-[#1A1B1C] overflow-hidden flex items-center justify-center px-4 md:px-0"
       style={{ height: "calc(100vh - 64px)" }}
     >
+      {/* TOP LABEL */}
       <div
-        className="absolute top-6 left-8 text-[12px] tracking-[0.10em] uppercase"
+        className="absolute top-4 left-4 md:top-6 md:left-8 text-[10px] md:text-[12px] tracking-[0.10em] uppercase"
         style={{ fontFamily: "Roobert TRIAL, sans-serif", fontWeight: 700 }}
       >
         TO START ANALYSIS
       </div>
 
-      <div className="relative w-full max-w-4xl h-[520px] flex items-center justify-center">
+      {/* CENTER STACK */}
+      <div className="relative w-full max-w-md md:max-w-4xl h-[360px] sm:h-[400px] md:h-[520px] flex items-center justify-center">
+        {/* Rotating dotted squares */}
         <div
           ref={squareOuterRef}
-          className="absolute top-1/2 left-1/2 h-[580px] w-[580px] -translate-x-1/2 -translate-y-1/2 border-2 border-[#8F8F8F]"
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 md:h-[580px] md:w-[580px] h-[340px] w-[340px] border-2 border-[#8F8F8F]"
           style={{ borderStyle: "dotted", opacity: 0.45 }}
         />
         <div
           ref={squareMiddleRef}
-          className="absolute top-1/2 left-1/2 h-[540px] w-[540px] -translate-x-1/2 -translate-y-1/2 border-2 border-[#6F6F6F]"
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 md:h-[540px] md:w-[540px] h-[320px] w-[320px] border-2 border-[#6F6F6F]"
           style={{ borderStyle: "dotted", opacity: 0.62 }}
         />
         <div
           ref={squareInnerRef}
-          className="absolute top-1/2 left-1/2 h-[500px] w-[500px] -translate-x-1/2 -translate-y-1/2 border-2 border-[#555555]"
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 md:h-[500px] md:w-[500px] h-[300px] w-[300px] border-2 border-[#555555]"
           style={{ borderStyle: "dotted", opacity: 0.78 }}
         />
 
-        <div className="relative z-10 flex flex-col items-center justify-center text-center">
+        {/* CONTENT */}
+        <div className="relative z-10 flex flex-col items-center justify-center text-center px-2">
           {phase === "loading" && (
             <>
               <span
-                className="mb-6 text-[16px] tracking-[0.08em] text-[#6D768A]"
-                style={{ fontFamily: "Roobert TRIAL, sans-serif", fontWeight: 400 }}
+                className="mb-6 text-[14px] md:text-[16px] tracking-[0.08em] text-[#6D768A]"
+                style={{
+                  fontFamily: "Roobert TRIAL, sans-serif",
+                  fontWeight: 400,
+                }}
               >
                 Processing submission
               </span>
@@ -170,14 +177,20 @@ export default function TestingPage() {
           {phase === "success" && (
             <>
               <h2
-                className="mb-2 text-[28px] text-[#1A1B1C]"
-                style={{ fontFamily: "Roobert TRIAL, sans-serif", fontWeight: 400 }}
+                className="mb-2 text-[22px] sm:text-[24px] md:text-[28px] text-[#1A1B1C]"
+                style={{
+                  fontFamily: "Roobert TRIAL, sans-serif",
+                  fontWeight: 400,
+                }}
               >
                 Thank you!
               </h2>
               <p
-                className="text-[14px] text-[#6D768A]"
-                style={{ fontFamily: "Roobert TRIAL, sans-serif", fontWeight: 400 }}
+                className="text-[12px] sm:text-[13px] md:text-[14px] text-[#6D768A]"
+                style={{
+                  fontFamily: "Roobert TRIAL, sans-serif",
+                  fontWeight: 400,
+                }}
               >
                 Proceed for the next step
               </p>
@@ -187,8 +200,11 @@ export default function TestingPage() {
           {phase === "input" && (
             <>
               <span
-                className="mb-3 text-[10px] tracking-[0.16em] uppercase text-[#9EAAC7]"
-                style={{ fontFamily: "Roobert TRIAL, sans-serif", fontWeight: 400 }}
+                className="mb-3 text-[9px] sm:text-[10px] tracking-[0.16em] uppercase text-[#9EAAC7]"
+                style={{
+                  fontFamily: "Roobert TRIAL, sans-serif",
+                  fontWeight: 400,
+                }}
               >
                 {step === 1 ? "CLICK TO TYPE" : "YOUR CITY NAME"}
               </span>
@@ -202,7 +218,7 @@ export default function TestingPage() {
                   onKeyDown={handleKeyDown}
                   placeholder={step === 1 ? "Introduce Yourself" : "Your city name"}
                   disabled={isSubmitting}
-                  className="bg-transparent outline-none text-center text-[#7C7C7C] text-[40px] md:text-[56px] leading-none w-[320px] md:w-[520px]"
+                  className="bg-transparent outline-none text-center text-[#7C7C7C] text-[28px] sm:text-[36px] md:text-[56px] leading-none w-[240px] sm:w-[300px] md:w-[520px]"
                   style={{
                     fontFamily: "Roobert TRIAL, sans-serif",
                     fontWeight: 300,
@@ -214,36 +230,48 @@ export default function TestingPage() {
         </div>
       </div>
 
-      <div className="absolute left-12 bottom-12 flex items-center gap-4">
+      {/* BACK BUTTON */}
+      <div className="absolute left-6 bottom-8 md:left-12 md:bottom-12 flex items-center gap-3 md:gap-4">
         <button
           type="button"
           onClick={() => router.push("/")}
-          className="flex h-11 w-11 items-center justify-center border border-[#1A1B1C] rotate-45 cursor-pointer transition-transform duration-200 hover:scale-110"
+          className="flex h-10 w-10 md:h-11 md:w-11 items-center justify-center border border-[#1A1B1C] rotate-45 cursor-pointer transition-transform duration-200 hover:scale-110"
         >
-          <span className="-rotate-45 text-[10px] text-[#1A1B1C]">◄</span>
+          <span className="-rotate-45 text-[9px] md:text-[10px] text-[#1A1B1C]">
+            ◄
+          </span>
         </button>
         <span
-          className="text-[12px] tracking-[0.10em] uppercase"
-          style={{ fontFamily: "Roobert TRIAL, sans-serif", fontWeight: 400 }}
+          className="text-[10px] md:text-[12px] tracking-[0.10em] uppercase"
+          style={{
+            fontFamily: "Roobert TRIAL, sans-serif",
+            fontWeight: 400,
+          }}
         >
           BACK
         </span>
       </div>
 
+      {/* PROCEED BUTTON (ON SUCCESS) */}
       {phase === "success" && (
-        <div className="absolute right-12 bottom-12 flex items-center gap-4">
+        <div className="absolute right-6 bottom-8 md:right-12 md:bottom-12 flex items-center gap-3 md:gap-4">
           <span
-            className="text-[12px] tracking-[0.10em] uppercase"
-            style={{ fontFamily: "Roobert TRIAL, sans-serif", fontWeight: 400 }}
+            className="text-[10px] md:text-[12px] tracking-[0.10em] uppercase"
+            style={{
+              fontFamily: "Roobert TRIAL, sans-serif",
+              fontWeight: 400,
+            }}
           >
             PROCEED
           </span>
           <button
             type="button"
             onClick={() => router.push("/result")}
-            className="flex h-11 w-11 items-center justify-center border border-[#1A1B1C] rotate-45 cursor-pointer transition-transform duration-200 hover:scale-110"
+            className="flex h-10 w-10 md:h-11 md:w-11 items-center justify-center border border-[#1A1B1C] rotate-45 cursor-pointer transition-transform duration-200 hover:scale-110"
           >
-            <span className="-rotate-45 text-[10px] text-[#1A1B1C]">▶</span>
+            <span className="-rotate-45 text-[9px] md:text-[10px] text-[#1A1B1C]">
+              ▶
+            </span>
           </button>
         </div>
       )}
