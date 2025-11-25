@@ -141,10 +141,28 @@ export default function SummaryPage() {
   }, []);
 
   useEffect(() => {
-    const previous = document.body.style.backgroundColor;
+    if (typeof window === "undefined") return;
+
+    const previousBg = document.body.style.backgroundColor;
+    const previousOverflowY = document.body.style.overflowY;
+
     document.body.style.backgroundColor = "#ffffff";
+
+    const updateOverflow = () => {
+      if (window.innerWidth >= 768) {
+        document.body.style.overflowY = "hidden";
+      } else {
+        document.body.style.overflowY = "auto";
+      }
+    };
+
+    updateOverflow();
+    window.addEventListener("resize", updateOverflow);
+
     return () => {
-      document.body.style.backgroundColor = previous;
+      document.body.style.backgroundColor = previousBg;
+      document.body.style.overflowY = previousOverflowY;
+      window.removeEventListener("resize", updateOverflow);
     };
   }, []);
 
@@ -270,7 +288,7 @@ export default function SummaryPage() {
   }
 
   return (
-    <div className="min-h-screen md:h-[90vh] flex flex-col bg-white text-black">
+    <div className="min-h-screen md:h-screen flex flex-col bg-white text-black md:overflow-hidden">
       <main className="flex-1 w-full bg-white">
         <div className="h-full max-w-[480px] md:max-w-full mx-auto md:mx-5 px-4 md:px-0 flex flex-col">
           <div className="text-start mb-4 md:mb-10">
@@ -285,7 +303,7 @@ export default function SummaryPage() {
             </h4>
           </div>
 
-          <div className="grid md:grid-cols-[1.5fr_8.5fr_3.15fr] gap-4 mt-6 md:mt-10 pb-10 md:pb-0 flex-1">
+          <div className="grid md:grid-cols-[1.5fr_8.5fr_3.15fr] gap-4 mt-6 md:mt-10 pb-10 md:pb-0">
             <div className="hidden md:flex order-3 md:order-1 bg-white space-y-3 flex-col h-[62%]">
               <button
                 type="button"
@@ -349,7 +367,7 @@ export default function SummaryPage() {
                         a 49.15,49.15 0 1 1 0,-98.3
                       "
                       strokeWidth={1.7}
-                      fillOpacity={0}
+                      fill="none"
                       style={{
                         strokeLinecap: "butt",
                         strokeDasharray: `${circumference}px, ${circumference}px`,
@@ -365,7 +383,7 @@ export default function SummaryPage() {
                         a 49.15,49.15 0 1 1 0,-98.3
                       "
                       strokeWidth={1.7}
-                      fillOpacity={0}
+                      fill="none"
                       style={{
                         stroke: "#1A1B1C",
                         strokeLinecap: "butt",
@@ -383,20 +401,16 @@ export default function SummaryPage() {
                   </div>
                 </div>
               </div>
-
-              <p className="mt-4 md:mt-0 text-[11px] md:text-sm font-normal leading-[24px] text-center md:text-left md:absolute md:bottom-[-15%] md:left-[30%] lg:left-[35%] xl:left-[40%] 2xl:left-[45%] text-black">
-                If A.I. estimate is wrong, select the correct one.
-              </p>
             </div>
 
-            <div className="order-1 md:order-3 bg-[#F4F5F7] pt-0 md:pt-4 pb-0 md:pb-4 md:border-t">
+            <div className="order-1 md:order-3 bg-[#F4F5F7] pt-0 md:pt-4 pb-0 md:pb-4 md:border-t md:h-[57vh]">
               <div className="md:hidden mb-0 space-y-0">
                 <button
                   type="button"
                   onClick={() => setActiveGroup("race")}
                   className={`w-full px-4 py-3 cursor-pointer flex flex-col justify-between border-t ${
                     activeGroup === "race"
-                      ? "bg-[#1A1B1C] text-white hover:bg:black"
+                      ? "bg-[#1A1B1C] text-white hover:bg-black"
                       : "bg-[#F3F3F4] hover:bg-[#E1E1E2] text-black"
                   }`}
                 >
@@ -449,12 +463,7 @@ export default function SummaryPage() {
                           a 49.15,49.15 0 1 1 0,-98.3
                         "
                         strokeWidth={1.7}
-                        fillOpacity={0}
-                        style={{
-                          strokeLinecap: "butt",
-                          strokeDasharray: `${circumference}px, ${circumference}px`,
-                          strokeDashoffset: 0,
-                        }}
+                        fill="none"
                       />
                       <path
                         className="CircularProgressbar-path"
@@ -465,7 +474,7 @@ export default function SummaryPage() {
                           a 49.15,49.15 0 1 1 0,-98.3
                         "
                         strokeWidth={1.7}
-                        fillOpacity={0}
+                        fill="none"
                         style={{
                           stroke: "#1A1B1C",
                           strokeLinecap: "butt",
@@ -545,8 +554,8 @@ export default function SummaryPage() {
             </div>
           </div>
 
-          <div className="pt-8 md:pt-[37px] pb-10 bg-white mt-auto">
-            <div className="flex justify-between max-w-full mx-auto">
+          <div className="pt-8 md:pt-[37px] pb-10 bg-white">
+            <div className="flex items-center justify-between max-w-full mx-auto">
               <button
                 onClick={() => router.push("/result")}
                 className="group flex flex-row relative justify-center items-center cursor-pointer"
@@ -565,6 +574,10 @@ export default function SummaryPage() {
                   </span>
                 </div>
               </button>
+
+              <p className="hidden md:block text-[11px] md:text-sm font-normal leading-[24px] text-center text-black">
+                If A.I. estimate is wrong, select the correct one.
+              </p>
 
               <button
                 onClick={() => router.push("/")}
