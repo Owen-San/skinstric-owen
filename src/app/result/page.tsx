@@ -25,6 +25,7 @@ export default function ResultPage() {
   const [isLoading, setIsLoading] = useState(false);
   const [hasUploaded, setHasUploaded] = useState(false);
   const [previewImage, setPreviewImage] = useState<string | null>(null);
+  const [showCameraDialog, setShowCameraDialog] = useState(false);
 
   useEffect(() => {
     const squares = [
@@ -91,6 +92,11 @@ export default function ResultPage() {
     fileInputRef.current?.click();
   }
 
+  function handleAllowCamera() {
+    setShowCameraDialog(false);
+    router.push("/camera");
+  }
+
   function handleFileChange(e: ChangeEvent<HTMLInputElement>) {
     const file = e.target.files?.[0];
     if (!file) return;
@@ -137,6 +143,10 @@ export default function ResultPage() {
     };
 
     reader.readAsDataURL(file);
+  }
+
+  function handleCameraClick() {
+    setShowCameraDialog(true);
   }
 
   return (
@@ -201,14 +211,15 @@ export default function ResultPage() {
             <div className="relative z-10 flex items-center justify-center">
               <button
                 type="button"
-                className="h-[140px] w-[140px] md:h-[160px] md:w-[160px] lg:h-[176px] lg:w-[176px] flex items-center justify-center transition-transform duration-200 hover:scale-110"
+                onClick={handleCameraClick}
+                className="h-[140px] w-[140px] md:h-[160px] md:w-[160px] lg:h-[176px] lg:w-[176px] flex items-center justify-center transition-transform duration-200 hover:scale-110 cursor-pointer"
               >
                 <Image
                   src="/camera-icon.webp"
                   alt="Camera Icon"
                   width={136}
                   height={136}
-                  className="w-[110px] h-[110px] md:w-[120px] md:h-[120px] lg:w-[136px] lg:h-[136px] cursor-pointer"
+                  className="w-[110px] h-[110px] md:w-[120px] md:h-[120px] lg:w-[136px] lg:h-[136px]"
                 />
               </button>
             </div>
@@ -270,14 +281,14 @@ export default function ResultPage() {
               <button
                 type="button"
                 onClick={handleGalleryClick}
-                className="h-[140px] w-[140px] md:h-[160px] md:w-[160px] lg:h-[176px] lg:w-[176px] flex items-center justify-center transition-transform duration-200 hover:scale-110"
+                className="h-[140px] w-[140px] md:h-[160px] md:w-[160px] lg:h-[176px] lg:w-[176px] flex items-center justify-center transition-transform duration-200 hover:scale-110 cursor-pointer"
               >
                 <Image
                   src="/gallery-icon.webp"
                   alt="Gallery Icon"
                   width={136}
                   height={136}
-                  className="w-[110px] h-[110px] md:w-[120px] md:h-[120px] lg:w-[136px] lg:h-[136px] cursor-pointer"
+                  className="w-[110px] h-[110px] md:w-[120px] md:h-[120px] lg:w-[136px] lg:h-[136px]"
                 />
               </button>
             </div>
@@ -370,6 +381,41 @@ export default function ResultPage() {
                 <span className="h-2 w-2 rounded-full bg-[#C4C4C4]" />
                 <span className="h-2 w-2 rounded-full bg-[#C4C4C4]" />
               </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {showCameraDialog && (
+        <div className="absolute inset-0 z-30 flex items-start justify-center pt-48">
+          <div className="w-[360px] max-w-[90%] shadow-lg">
+            <div
+              className="bg-[#1A1B1C] text-white px-8 py-6 text-[12px] tracking-[0.16em] uppercase"
+              style={{
+                fontFamily: "Roobert TRIAL, sans-serif",
+                fontWeight: 700,
+              }}
+            >
+              ALLOW A.I. TO ACCESS YOUR CAMERA
+            </div>
+            <div
+              className="bg-[#101216] text-[11px] text-white tracking-[0.16em] uppercase flex justify-between items-center px-8 py-4"
+              style={{ fontFamily: "Roobert TRIAL, sans-serif" }}
+            >
+              <button
+                type="button"
+                className="cursor-pointer opacity-80 hover:opacity-100"
+                onClick={() => setShowCameraDialog(false)}
+              >
+                DENY
+              </button>
+              <button
+                type="button"
+                className="cursor-pointer"
+                onClick={handleAllowCamera}
+              >
+                ALLOW
+              </button>
             </div>
           </div>
         </div>
