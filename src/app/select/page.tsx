@@ -44,6 +44,7 @@ export default function SelectPage() {
           >
             <button
               type="button"
+              onClick={() => router.push("/summary")}
               className="w-1/2 h-1/2 bg-[#ECEFF5] border border-white flex items-center justify-center cursor-pointer transition-colors duration-200 hover:bg-[#D4DBE8]"
             >
               <span
@@ -132,7 +133,8 @@ export default function SelectPage() {
         </span>
         <button
           type="button"
-          className="flex h-11 w-11 items-center justify-center border border-[#1A1B1C] rotate-45 cursor-not-allowed transition-transform duration-200 hover:scale-110"
+          onClick={() => router.push("/summary")}
+          className="flex h-11 w-11 items-center justify-center border border-[#1A1B1C] rotate-45 cursor-pointer transition-transform duration-200 hover:scale-110"
         >
           <span className="-rotate-45 text-[10px] text-[#1A1B1C]">►</span>
         </button>

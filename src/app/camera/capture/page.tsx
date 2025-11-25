@@ -65,9 +65,7 @@ export default function CameraCapturePage() {
   useEffect(() => {
     if (capturedPhoto === null && streamRef.current && videoRef.current) {
       videoRef.current.srcObject = streamRef.current;
-      videoRef.current
-        .play()
-        .catch(() => undefined);
+      videoRef.current.play().catch(() => undefined);
     }
   }, [capturedPhoto]);
 
@@ -89,12 +87,19 @@ export default function CameraCapturePage() {
     ctx.drawImage(video, 0, 0, width, height);
     const dataUrl = canvas.toDataURL("image/jpeg");
     setCapturedPhoto(dataUrl);
+    window.localStorage.setItem("skinstric_captured_image", dataUrl);
 
     video.pause();
   }
 
   function handleRetake() {
     setCapturedPhoto(null);
+  }
+
+  function handleNext() {
+    if (!capturedPhoto) return;
+    window.localStorage.setItem("skinstric_captured_image", capturedPhoto);
+    router.push("/select");
   }
 
   return (
@@ -117,6 +122,24 @@ export default function CameraCapturePage() {
           BACK
         </span>
       </div>
+
+      {capturedPhoto && (
+        <div className="absolute right-6 md:right-10 bottom-8 flex items-center gap-4">
+          <span
+            className="text-[10px] tracking-[0.16em] uppercase text-white/80"
+            style={{ fontFamily: "Roobert TRIAL, sans-serif", fontWeight: 400 }}
+          >
+            NEXT
+          </span>
+          <button
+            type="button"
+            onClick={handleNext}
+            className="flex h-11 w-11 items-center justify-center border border-white/70 rotate-45 cursor-pointer transition-transform duration-200 hover:scale-110"
+          >
+            <span className="-rotate-45 text-[10px]">►</span>
+          </button>
+        </div>
+      )}
 
       <div className="flex flex-col items-center gap-10 w-full px-4">
         <div className="w-full max-w-4xl aspect-video bg-black/60 border border-white/10 rounded-[18px] overflow-hidden shadow-[0_0_0_1px_rgba(255,255,255,0.04)] flex items-center justify-center">
