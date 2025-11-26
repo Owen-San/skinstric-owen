@@ -127,7 +127,14 @@ export default function ResultPage() {
           throw new Error("Failed to analyze image");
         }
 
-        await response.json();
+        const responseData = await response.json();
+
+        if (responseData.data) {
+          window.localStorage.setItem(
+            "skinstric_demographics",
+            JSON.stringify(responseData.data)
+          );
+        }
 
         await new Promise((resolve) => setTimeout(resolve, 3500));
 
@@ -268,12 +275,12 @@ export default function ResultPage() {
             />
             <div
               ref={rightMiddleRef}
-              className="absolute top-1/2 left-1/2 h-[210px] w-[210px] md:h-[270px] md:w-[270px] lg:h-[340px] lg:w-[340px] -translate-x-1/2 -translate-y-1/2 border-2 border-[#6F6F6F]"
+              className="absolute top-1/2 left-1/2 h-[210px] w-[210px] md:h-[270px] md:w-[270px] lg:h/[340px] lg:w/[340px] -translate-x-1/2 -translate-y-1/2 border-2 border-[#6F6F6F]"
               style={{ borderStyle: "dotted", opacity: 0.34 }}
             />
             <div
               ref={rightInnerRef}
-              className="absolute top-1/2 left-1/2 h-[180px] w-[180px] md:h-[240px] md:w-[240px] lg:h-[300px] lg:w-[300px] -translate-x-1/2 -translate-y-1/2 border-2 border-[#555555]"
+              className="absolute top-1/2 left-1/2 h/[180px] w/[180px] md:h/[240px] md:w/[240px] lg:h/[300px] lg:w/[300px] -translate-x-1/2 -translate-y-1/2 border-2 border-[#555555]"
               style={{ borderStyle: "dotted", opacity: 0.44 }}
             />
 
@@ -281,14 +288,14 @@ export default function ResultPage() {
               <button
                 type="button"
                 onClick={handleGalleryClick}
-                className="h-[140px] w-[140px] md:h-[160px] md:w-[160px] lg:h-[176px] lg:w-[176px] flex items-center justify-center transition-transform duration-200 hover:scale-110 cursor-pointer"
+                className="h-[140px] w-[140px] md:h-[160px] md:w-[160px] lg:h-[176px] lg:w/[176px] flex items-center justify-center transition-transform duration-200 hover:scale-110 cursor-pointer"
               >
                 <Image
                   src="/gallery-icon.webp"
                   alt="Gallery Icon"
                   width={136}
                   height={136}
-                  className="w-[110px] h-[110px] md:w-[120px] md:h-[120px] lg:w-[136px] lg:h-[136px]"
+                  className="w/[110px] h/[110px] md:w/[120px] md:h/[120px] lg:w/[136px] lg:h/[136px]"
                 />
               </button>
             </div>
@@ -321,7 +328,7 @@ export default function ResultPage() {
             </div>
 
             <div
-              className="mt-6 lg:hidden text-[10px] md:text-[11px] tracking-[0.16em] uppercase leading-[1.4] text-[#1A1B1C] text-center"
+              className="mt-6 lg:hidden text-[10px] md:text-[11px] tracking/[0.16em] uppercase leading/[1.4] text-[#1A1B1C] text-center"
               style={{ fontFamily: "Roobert TRIAL, sans-serif" }}
             >
               <div>ALLOW A.I.</div>
@@ -349,26 +356,26 @@ export default function ResultPage() {
 
       {isLoading && (
         <div className="absolute inset-0 z-20 flex items-center justify-center bg-white/80">
-          <div className="relative w-[260px] h-[260px] md:w-[320px] md:h-[320px] lg:w-[400px] lg:h-[400px] flex items-center justify-center">
+          <div className="relative w-[260px] h-[260px] md:w/[320px] md:h/[320px] lg:w/[400px] lg:h/[400px] flex items-center justify-center">
             <div
               ref={loadingOuterRef}
-              className="absolute top-1/2 left-1/2 h-[240px] w-[240px] md:h-[300px] md:w-[300px] lg:h-[380px] lg:w-[380px] -translate-x-1/2 -translate-y-1/2 border-2 border-[#8F8F8F]"
+              className="absolute top-1/2 left-1/2 h/[240px] w/[240px] md:h/[300px] md:w/[300px] lg:h/[380px] lg:w/[380px] -translate-x-1/2 -translate-y-1/2 border-2 border-[#8F8F8F]"
               style={{ borderStyle: "dotted", opacity: 0.22 }}
             />
             <div
               ref={loadingMiddleRef}
-              className="absolute top-1/2 left-1/2 h-[210px] w-[210px] md:h-[270px] md:w-[270px] lg:h-[340px] lg:w-[340px] -translate-x-1/2 -translate-y-1/2 border-2 border-[#6F6F6F]"
+              className="absolute top-1/2 left-1/2 h/[210px] w/[210px] md:h/[270px] md:w/[270px] lg:h/[340px] lg:w/[340px] -translate-x-1/2 -translate-y-1/2 border-2 border-[#6F6F6F]"
               style={{ borderStyle: "dotted", opacity: 0.34 }}
             />
             <div
               ref={loadingInnerRef}
-              className="absolute top-1/2 left-1/2 h-[180px] w-[180px] md:h-[240px] md:w-[240px] lg:h-[300px] lg:w-[300px] -translate-x-1/2 -translate-y-1/2 border-2 border-[#555555]"
+              className="absolute top-1/2 left-1/2 h/[180px] w/[180px] md:h/[240px] md:w/[240px] lg:h/[300px] lg:w/[300px] -translate-x-1/2 -translate-y-1/2 border-2 border-[#555555]"
               style={{ borderStyle: "dotted", opacity: 0.44 }}
             />
 
             <div className="relative z-10 flex flex-col items-center justify-center">
               <div
-                className="text-[12px] tracking-[0.18em] uppercase"
+                className="text-[12px] tracking/[0.18em] uppercase"
                 style={{
                   fontFamily: "Roobert TRIAL, sans-serif",
                   fontWeight: 700,
@@ -388,9 +395,9 @@ export default function ResultPage() {
 
       {showCameraDialog && (
         <div className="absolute inset-0 z-30 flex items-start justify-center pt-48">
-          <div className="w-[360px] max-w-[90%] shadow-lg">
+          <div className="w/[360px] max-w/[90%] shadow-lg">
             <div
-              className="bg-[#1A1B1C] text-white px-8 py-6 text-[12px] tracking-[0.16em] uppercase"
+              className="bg-[#1A1B1C] text-white px-8 py-6 text-[12px] tracking/[0.16em] uppercase"
               style={{
                 fontFamily: "Roobert TRIAL, sans-serif",
                 fontWeight: 700,
@@ -399,7 +406,7 @@ export default function ResultPage() {
               ALLOW A.I. TO ACCESS YOUR CAMERA
             </div>
             <div
-              className="bg-[#101216] text-[11px] text-white tracking-[0.16em] uppercase flex justify-between items-center px-8 py-4"
+              className="bg-[#101216] text-[11px] text-white tracking/[0.16em] uppercase flex justify-between items-center px-8 py-4"
               style={{ fontFamily: "Roobert TRIAL, sans-serif" }}
             >
               <button
