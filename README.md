@@ -1,36 +1,77 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🌿 Skinstric AI — Skincare Analysis Web App
 
-## Getting Started
+A modern, responsive skincare analysis platform built with **Next.js, TypeScript, Tailwind CSS, and GSAP**. Skinstric guides users through a smooth multi-step flow — camera capture, demographic AI analysis, results, and dynamic summaries, all wrapped in a polished, animated interface.
 
-First, run the development server:
+🔗 **Live Demo:** https://skinstric-owen.vercel.app/  
+📦 **GitHub Repo:** https://github.com/Owen-San/skinstric-owen
+
+---
+
+## ✨ Features
+
+- **Beautiful Hero Animation** powered by GSAP  
+- **Camera Capture Flow** with live preview and snapshot handling  
+- **AI-powered Demographic Analysis** (race, age, gender)  
+- **Results Page** with animated rotating elements and image clusters  
+- **Summary Page** breaking down confidence scores and insights  
+- **Fully Responsive Design** (desktop → tablet → mobile)  
+- **Smooth Multi-Step User Journey**  
+- **Fast, optimized Next.js routing + image handling**
+
+---
+
+## 🛠️ Tech Stack
+
+- **Next.js 14 (App Router)**
+- **TypeScript**
+- **Tailwind CSS**
+- **GSAP Animations**
+- **Next/Image**
+- **Camera API**
+- **Deployed on Vercel**
+
+---
+
+## 📸 User Flow
+
+1. **Landing Page**  
+   Animated hero, CTAs, and smooth GSAP sequencing.
+2. **Camera Capture**  
+   User enables camera → captures photo → sees preview.
+3. **Demographic Analysis**  
+   Data is processed through an AI backend endpoint.
+4. **Results Page**  
+   Animated visuals with two image clusters.
+5. **Summary Breakdown**  
+   Race, age, gender probabilities (clean cards + layout).
+6. **Retake / Restart**  
+   Fully handled state reset for a seamless retry experience.
+
+---
+
+## 🎨 UI & UX Highlights
+
+- Custom animations  
+- Polished layout flow  
+- Clean mobile experience  
+- Smooth transitions between steps  
+- Subtle motion + progressive reveal elements  
+- Pixel-perfect spacing at all major breakpoints (1024, 768, 480)
+
+---
+
+## 🚀 Getting Started
 
 ```bash
+git clone https://github.com/Owen-San/skinstric-owen
+cd skinstric-owen
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+
+Open http://localhost:3000
+ in your browser.
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+##⭐ If you like the project
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Feel free to star the repo!
