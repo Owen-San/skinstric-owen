@@ -1,6 +1,6 @@
 # 🌿 Skinstric AI — Skincare Analysis Web App
 
-A modern, responsive skincare analysis platform built with **Next.js, TypeScript, Tailwind CSS, and GSAP**. Skinstric guides users through a smooth multi-step flow — camera capture, demographic AI analysis, results, and dynamic summaries, all wrapped in a polished, animated interface.
+A modern, responsive skincare analysis platform built with **Next.js, TypeScript, Tailwind CSS, and GSAP**. Skinstric guides users through a smooth multi-step flow. Camera capture, demographic AI analysis, results, and dynamic summaries, all wrapped in a polished, animated interface.
 
 🔗 **Live Demo:** https://skinstric-owen.vercel.app/  
 📦 **GitHub Repo:** https://github.com/Owen-San/skinstric-owen
@@ -72,6 +72,6 @@ Open http://localhost:3000
  in your browser.
 ```
 
-##⭐ If you like the project
+## ⭐ If you like the project
 
 Feel free to star the repo!
